@@ -1,0 +1,60 @@
+
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface fastethernet2/0
+%Invalid interface type and number
+Router(config)#interface serial2/0
+Router(config-if)#ip address 172.17.0.2
+% Incomplete command.
+Router(config-if)#^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+^Z
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface fastethernet0/0
+Router(config-if)#ip address 172.18.0.10 255.255.0.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+Router(config-if)#interface serial2/0
+Router(config-if)#ip address 172.17.0.2 255.255.0.0
+Router(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial2/0, changed state to down
+Router(config-if)#
+Router(config-if)#interface serial3/0
+Router(config-if)#ip address 172.19.0.1 255.255.0.0
+Router(config-if)#clock rate 64000
+Router(config-if)#bandwidth 64
+Router(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial3/0, changed state to down
+Router(config-if)#^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router eigrp 1
+Router(config-router)#network 172.17.0.0
+Router(config-router)#network 172.19.0.0
+Router(config-router)#network 172.18.0.0
+Router(config-router)#^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+Router#
