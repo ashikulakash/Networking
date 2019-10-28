@@ -1,0 +1,56 @@
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface fastethernet0/0
+Router(config-if)#ip address 172.16.0.1 255.255.0.0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+Router(config-if)#interface serial2/0
+Router(config-if)#ip address 172.17.0.1 255.255.0.0
+Router(config-if)#clock speed 64000
+                        ^
+% Invalid input detected at '^' marker.
+	
+Router(config-if)#clock rate 64000
+Router(config-if)#bandwidth 64
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial2/0, changed state to up
+
+Router(config-if)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial2/0, changed state to up
+^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router eigrp 1
+Router(config-router)#network 172.17.0.0
+Router(config-router)#
+%DUAL-5-NBRCHANGE: IP-EIGRP 1: Neighbor 172.17.0.2 (Serial2/0) is up: new adjacency
+
+Router(config-router)#network 172.16.0.0
+Router(config-router)#
+Router(config-router)#^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+Router#
+Router#
+Router#
+Router#
