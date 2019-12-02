@@ -1,0 +1,47 @@
+Continue with configuration dialog? [yes/no]: no
+
+
+Press RETURN to get started!
+
+
+
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface fastethernet0/0
+Router(config-if)#no shutdown
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+Router(config-if)#exit
+Router(config)#interface fastethernet0/0.1
+Router(config-subif)#
+%LINK-5-CHANGED: Interface FastEthernet0/0.1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0.1, changed state to up
+
+Router(config-subif)#encapsulation dot1q 10
+Router(config-subif)#ip address 192.168.1.1 255.255.255.0
+Router(config-subif)#no shutdown
+Router(config-subif)#interface fastethernet0/0.2
+Router(config-subif)#
+%LINK-5-CHANGED: Interface FastEthernet0/0.2, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0.2, changed state to up
+
+Router(config-subif)#encapsulation dot1q 20
+Router(config-subif)#ip address 192.168.2.1 255.255.255.0
+Router(config-subif)#no shutdown
+Router(config-subif)#^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#
+
+
+
+
+
